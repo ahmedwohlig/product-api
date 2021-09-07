@@ -22,7 +22,7 @@ mongoose.connect(
 })
 
 // importing all routes
-const productRoutes = require('./routes/products')
+const productRoutes = require('./routes/products/products')
 
 
 // setting the routes
