@@ -5,23 +5,22 @@ const v = new Validator();
 const preValidateProperty = require("../../config/preValidateProperty");
 
 const schema = {
-    id: "/Product",
+    id: "/Update",
     type: "object",
     properties: {
         productName: { type: "string" },
-        nid: { type: "string", minLength: 10, maxLength: 10 },
         price: { type: "number" },
     },
-    required: ["productName", "nid", "price"],
 };
 
 module.exports = (req, res, next) => {
-    const validatorResult = v.validate(req.body, schema, {
-        preValidateProperty,
+    const validationResult = v.validate(req.body, schema, {
+        preValidateProperty: preValidateProperty,
     });
-    if (validatorResult.valid) {
+    if (validationResult.valid) {
         next();
     } else {
+        console.log(validationResult.errors[0]);
         res.json({
             error: `${validationResult.errors[0].path} ${validationResult.errors[0].message}`,
         });

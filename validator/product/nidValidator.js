@@ -5,20 +5,18 @@ const v = new Validator();
 const preValidateProperty = require("../../config/preValidateProperty");
 
 const schema = {
-    id: "/Product",
+    id: "/Nid",
     type: "object",
     properties: {
-        productName: { type: "string" },
-        nid: { type: "string", minLength: 10, maxLength: 10 },
-        price: { type: "number" },
+        nid: { type: "string", maxLength: 10, minLength: 10 },
     },
-    required: ["productName", "nid", "price"],
 };
 
 module.exports = (req, res, next) => {
-    const validatorResult = v.validate(req.body, schema, {
-        preValidateProperty,
+    const validatorResult = v.validate(req.params.nid, schema, {
+        preValidateProperty: validatorResult,
     });
+
     if (validatorResult.valid) {
         next();
     } else {
