@@ -20,8 +20,7 @@ module.exports = (req, res, next) => {
     if (validationResult.valid) {
         next();
     } else {
-        console.log(validationResult.errors[0]);
-        res.json({
+        res.status(400).json({
             error: `${validationResult.errors[0].path} ${validationResult.errors[0].message}`,
         });
     }

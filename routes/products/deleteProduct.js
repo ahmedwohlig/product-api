@@ -1,9 +1,12 @@
 const Product = require("../../models/Product");
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     const nid = req.params.nid;
 
-    Product.findOneAndDelete({ nid: nid })
-        .then(res.json({ message: "deleted successfully" }))
-        .catch((err) => res.status(400).json({ error: err }));
+    const found = await Product.findOne({ nid });
+    if (!found) return res.status(404).json({ error: "Product not found" });
+
+    Product.deleteOne(found).then(
+        res.json({ message: "deleted successfully" })
+    );
 };
