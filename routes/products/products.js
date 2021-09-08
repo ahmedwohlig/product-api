@@ -12,7 +12,7 @@ const updateProductValidator = require("../../validator/product/updateProductVal
 const nidValidator = require("../../validator/product/nidValidator");
 
 router.post("/products", addProductValidator, addProduct);
-router.get("/products/:nid", getProduct);
+router.get("/products/:nid", nidValidator, getProduct);
 router.delete("/products/:nid", nidValidator, deleteProduct);
 router.put(
     "/products/:nid",
