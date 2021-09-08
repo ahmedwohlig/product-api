@@ -16,10 +16,10 @@ const schema = {
 };
 
 module.exports = (req, res, next) => {
-    const validatorResult = v.validate(req.body, schema, {
+    const validationResult = v.validate(req.body, schema, {
         preValidateProperty,
     });
-    if (validatorResult.valid) {
+    if (validationResult.valid) {
         next();
     } else {
         res.json({
