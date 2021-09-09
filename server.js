@@ -28,9 +28,9 @@ mongoose.connect(
 );
 
 // importing all routes
-const productRoutes = require("./routes/products/products");
+const routes = require("./routes/index");
 
 // setting the routes
-app.use("/api", productRoutes);
+app.use("/api", routes);
 
 app.listen(PORT || 3001, console.log(`server started on port ${PORT}`));
