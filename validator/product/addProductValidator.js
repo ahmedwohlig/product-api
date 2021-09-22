@@ -1,4 +1,5 @@
 const Validator = require("jsonschema").Validator;
+// changed using 'period' "." on vsgit
 
 const v = new Validator();
 
